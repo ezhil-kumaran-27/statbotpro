@@ -1,0 +1,7 @@
+# StatBot Pro — Git Ignore
+.env
+.venv/
+__pycache__/
+*.pyc
+static/charts/*.png
+.streamlit/secrets.toml
