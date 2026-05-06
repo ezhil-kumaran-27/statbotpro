@@ -5,12 +5,13 @@ Autonomous CSV Data Analyst powered by Google Gemini.
 API key loaded securely from .env file.
 """
 
-from __future__ import annotations
+
 
 import os
 from pathlib import Path
 from typing import Optional
 
+from __future__ import annotations
 import pandas as pd
 import streamlit as st
 from dotenv import load_dotenv
