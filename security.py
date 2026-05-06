@@ -61,7 +61,7 @@ def validate_code(code: str) -> None:
     # 1. Regex scan
     for pattern, message in BANNED_PATTERNS:
         if re.search(pattern, code, re.IGNORECASE):
-            raise SecurityError(f"🚫 Security blocked: {message}")
+            raise SecurityError(f"🚫 Security blocked and Restricted: {message}")
 
     # 2. AST import scan
     try:
