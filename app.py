@@ -5,13 +5,12 @@ Autonomous CSV Data Analyst powered by Google Gemini.
 API key loaded securely from .env file.
 """
 
-
+from __future__ import annotations
 
 import os
 from pathlib import Path
 from typing import Optional
 
-from __future__ import annotations
 import pandas as pd
 import streamlit as st
 from dotenv import load_dotenv
@@ -1129,6 +1128,6 @@ with tab_history:
 st.markdown("""
 <div class="footer">
   StatBot Pro &nbsp;·&nbsp; Infotact Solutions &nbsp;·&nbsp; AI Research &amp; Development Wing
-  &nbsp;·&nbsp; Confidential Document
+  &nbsp;·&nbsp.
 </div>
 """, unsafe_allow_html=True)
