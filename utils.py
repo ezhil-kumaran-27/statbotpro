@@ -76,10 +76,7 @@ def dataframe_summary(df: pd.DataFrame) -> str:
 # ── Chart helpers ─────────────────────────────────────────────────────────────
 
 def save_current_figure() -> tuple[str, bytes]:
-    """
-    Save the active Matplotlib figure to disk + return as bytes.
-    Returns (filepath_str, png_bytes).
-    """
+
     filename = f"chart_{uuid.uuid4().hex[:8]}.png"
     filepath = CHART_DIR / filename
 
