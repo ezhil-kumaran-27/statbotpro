@@ -35,7 +35,6 @@ class AgentResult:
 
 
 # ── Prompt Template ───────────────────────────────────────────────────────────
-
 SYSTEM_PROMPT = textwrap.dedent("""
 You are StatBot Pro, an expert Python data analyst.
 You are given a pandas DataFrame already loaded as variable `df`.
