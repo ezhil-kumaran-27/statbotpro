@@ -77,6 +77,7 @@ def validate_code(code: str) -> None:
                     raise SecurityError(
                         f"🚫 Import blocked: '{alias.name}' is not in the safe list."
                     )
+
         if isinstance(node, ast.ImportFrom):
             root = (node.module or "").split(".")[0]
             if root not in SAFE_MODULES:
