@@ -849,6 +849,7 @@ if st.session_state.df is None:
     """, unsafe_allow_html=True)
     st.stop()
 
+
 # ── Dataset loaded — show metric row ─────────────────────────────────────────
 df = st.session_state.df
 num_cols = df.select_dtypes("number").shape[1]
