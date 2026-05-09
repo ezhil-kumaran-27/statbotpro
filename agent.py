@@ -23,7 +23,6 @@ from utils import safe_exec, save_current_figure, close_all_figures, format_resu
 
 
 # ── Result dataclass ──────────────────────────────────────────────────────────
-
 @dataclass
 class AgentResult:
     answer: str = ""
