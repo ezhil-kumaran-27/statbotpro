@@ -806,7 +806,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-
 # ── No file uploaded yet ──────────────────────────────────────────────────────
 if st.session_state.df is None:
     st.markdown("""
