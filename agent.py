@@ -21,7 +21,6 @@ import math, statistics, datetime, collections, io, base64, json, string
 from security import SecurityError, validate_code
 from utils import safe_exec, save_current_figure, close_all_figures, format_result
 
-
 # ── Result dataclass ──────────────────────────────────────────────────────────
 @dataclass
 class AgentResult:
@@ -31,7 +30,6 @@ class AgentResult:
     chart_bytes: Optional[bytes] = None
     error: Optional[str] = None
     success: bool = True
-
 
 # ── Prompt Template ───────────────────────────────────────────────────────────
 SYSTEM_PROMPT = textwrap.dedent("""
