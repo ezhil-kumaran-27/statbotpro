@@ -47,7 +47,6 @@ def load_csv(file_obj) -> pd.DataFrame:
 
     raise ValueError(f"Could not read CSV. Error: {last_err}")
 
-
 # ── DataFrame Summary ─────────────────────────────────────────────────────────
 
 def dataframe_summary(df: pd.DataFrame) -> str:
