@@ -114,6 +114,7 @@ def run_agent(
     """
     result = AgentResult()
 
+
     # ── Step 1: Build prompt ──────────────────────────────────────────────────
     ctx = _df_context(df)
     user_msg = f"Question: {question}\n\nDataFrame Info:\n{ctx}"
