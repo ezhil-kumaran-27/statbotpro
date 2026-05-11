@@ -38,6 +38,7 @@ BANNED_PATTERNS = [
     (r"\bgetattr\s*\([^)]*__",  "getattr with dunder attributes is not allowed"),
 ]
 
+
 # ── Allowed imports ───────────────────────────────────────────────────────────
 SAFE_MODULES = {
     "pandas", "pd", "numpy", "np",
