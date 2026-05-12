@@ -1,7 +1,7 @@
 """
 app.py — StatBot Pro
 Professional light-theme Streamlit dashboard.
-Autonomous CSV Data Analyst powered by Google Gemini.
+Autonomous CSV Data Analyst powered.
 API key loaded securely from .env file.
 """
 
