@@ -993,7 +993,6 @@ with tab_ask:
                             unsafe_allow_html=True,
                         )
 
-
     # ── Quick query chips ─────────────────────────────────────────────────────
     st.markdown("---")
     st.caption("💡 **Quick queries** — click to pre-fill:")
