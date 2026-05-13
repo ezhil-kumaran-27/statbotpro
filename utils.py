@@ -110,7 +110,6 @@ def safe_exec(code: str, namespace: dict) -> dict:
         raise RuntimeError(traceback.format_exc())
     return namespace
 
-
 # ── Result Formatting ─────────────────────────────────────────────────────────
 
 def format_result(value) -> str:
