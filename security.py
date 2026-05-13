@@ -2,10 +2,8 @@
 security.py — StatBot Pro
 Validates generated code before execution using regex + AST scanning.
 """
-
 import re
 import ast
-
 
 # ── Banned regex patterns ──────────────────────────────────────────────────────
 BANNED_PATTERNS = [
