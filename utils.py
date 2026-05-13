@@ -2,11 +2,11 @@
 utils.py — StatBot Pro
 Helper utilities: CSV loading, chart management, safe execution, formatting.
 """
-
 import io
 import traceback
 import uuid
 from pathlib import Path
+
 
 import pandas as pd
 import matplotlib
