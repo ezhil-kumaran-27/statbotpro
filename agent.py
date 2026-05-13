@@ -72,7 +72,6 @@ def _extract_code(llm_text: str) -> str:
     cleaned = re.sub(r"```\w*", "", llm_text).strip("` \n")
     return cleaned
 
-
 def _df_context(df: pd.DataFrame, max_rows: int = 3) -> str:
     """Build a concise description of the DataFrame for the prompt."""
     lines = [
