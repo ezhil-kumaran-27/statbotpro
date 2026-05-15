@@ -1,9 +1,4 @@
 # 📊 StatBot Pro — Autonomous CSV Data Analyst
-
-> Infotact Solutions · AI R&D Wing · Confidential
-
----
-
 ## 📁 Project Structure
 
 ```
