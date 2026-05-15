@@ -62,6 +62,7 @@ def validate_code(code: str) -> None:
         if re.search(pattern, code, re.IGNORECASE):
             raise SecurityError(f"🚫 Security blocked: {message}")
 
+
     # 2. AST import scan
     try:
         tree = ast.parse(code)
