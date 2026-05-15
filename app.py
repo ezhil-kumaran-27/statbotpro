@@ -16,7 +16,6 @@ import streamlit as st
 from dotenv import load_dotenv
 from groq import Groq
 
-
 # Load API key from .env file
 load_dotenv()
 
