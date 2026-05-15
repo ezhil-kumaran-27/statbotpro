@@ -204,7 +204,3 @@ CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0
 docker build -t statbot-pro .
 docker run -p 8501:8501 -e GEMINI_API_KEY=your-gemini-api-key-here statbot-pro
 ```
-
----
-
-*StatBot Pro · Infotact Solutions · AI R&D Wing · Confidential*
