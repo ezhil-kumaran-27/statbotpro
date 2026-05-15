@@ -51,7 +51,6 @@ SAFE_MODULES = {
 class SecurityError(Exception):
     pass
 
-
 def validate_code(code: str) -> None:
     """
     Run regex and AST checks. Raises SecurityError if anything is blocked.
