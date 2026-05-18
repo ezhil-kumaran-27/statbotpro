@@ -50,6 +50,7 @@ Open `.env` and replace the placeholder:
 ```
 GROQ_API_KEY=your-groq-api-key-here
 ```
+Tip: you can also copy `.env.example` to `.env` and fill in the value.
 
 ### 5. Run the app
 ```bash
@@ -170,13 +171,8 @@ Which month had the highest revenue?
 
 ## 🛠️ Customization
 
-### Change the Gemini model
-In `app.py`, update `call_claude()`:
-```python
-model_name="gemini-1.5-flash",   # faster & cheaper
-# or
-model_name="gemini-1.5-pro",     # default — most capable
-```
+### Change the Groq model
+In `app.py`, update `call_claude()` → `model="..."` (for example, `llama-3.3-70b-versatile`).
 
 ### Allow more libraries
 Add to `SAFE_MODULES` in `security.py` and to the namespace dict in `agent.py`.
@@ -189,18 +185,10 @@ Add to `SAFE_MODULES` in `security.py` and to the namespace dict in `agent.py`.
 1. Push project to GitHub (make sure to NOT commit your `.env` file)
 2. Go to **share.streamlit.io**
 3. Select your repo, set `app.py` as the main file
-4. Add `GEMINI_API_KEY` in Settings → Secrets
+4. Add `GROQ_API_KEY` in Settings → Secrets
 
 ### Docker
-```dockerfile
-FROM python:3.11-slim
-WORKDIR /app
-COPY . .
-RUN pip install -r requirements.txt
-EXPOSE 8501
-CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
-```
 ```bash
 docker build -t statbot-pro .
-docker run -p 8501:8501 -e GEMINI_API_KEY=your-gemini-api-key-here statbot-pro
+docker run -p 8501:8501 -e GROQ_API_KEY=your-groq-api-key-here statbot-pro
 ```
