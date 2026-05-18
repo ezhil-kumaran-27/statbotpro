@@ -662,11 +662,19 @@ for k, v in defaults.items():
 # ═══════════════════════════════════════════════════════════════════════════════
 def call_claude(system: str, user: str) -> str:
     """Call Groq API using the Groq SDK. API key loaded from .env file."""
-    api_key = os.environ.get("GROQ_API_KEY", "").strip()
+    # Streamlit Community Cloud uses st.secrets; local dev typically uses `.env`.
+    api_key = ""
+    try:
+        api_key = str(st.secrets.get("GROQ_API_KEY", "")).strip()
+    except Exception:
+        api_key = ""
+
+    if not api_key:
+        api_key = os.environ.get("GROQ_API_KEY", "").strip()
     if not api_key:
         raise ValueError(
             "GROQ_API_KEY not found. "
-            "Please add it to the .env file: GROQ_API_KEY=your-groq-api-key-here"
+            "Add it to Streamlit Secrets (recommended) or to a local .env file: GROQ_API_KEY=..."
         )
     
     client = Groq(api_key=api_key)
