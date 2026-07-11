@@ -37,7 +37,7 @@ def load_csv(file_obj) -> pd.DataFrame:
             for col in df.columns:
                 if any(kw in col.lower() for kw in ["date", "time", "datetime"]):
                     try:
-                        df[col] = pd.to_datetime(df[col], infer_datetime_format=True)
+                        df[col] = pd.to_datetime(df[col])
                     except Exception:
                         pass
             return df
