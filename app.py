@@ -660,10 +660,8 @@ for k, v in defaults.items():
 # ═══════════════════════════════════════════════════════════════════════════════
 # API CALLER
 # ═══════════════════════════════════════════════════════════════════════════════
-def call_claude(system: str, user: str) -> str:
-    """Call Groq API using the Groq SDK. API key loaded from .env file."""
+def get_groq_api_key() -> str:
     # Streamlit Community Cloud uses st.secrets; local dev typically uses `.env`.
-    api_key = ""
     try:
         api_key = str(st.secrets.get("GROQ_API_KEY", "")).strip()
     except Exception:
@@ -671,6 +669,12 @@ def call_claude(system: str, user: str) -> str:
 
     if not api_key:
         api_key = os.environ.get("GROQ_API_KEY", "").strip()
+    return api_key
+
+
+def call_claude(system: str, user: str) -> str:
+    """Call Groq API using the Groq SDK."""
+    api_key = get_groq_api_key()
     if not api_key:
         raise ValueError(
             "GROQ_API_KEY not found. "
@@ -938,7 +942,7 @@ with tab_ask:
         q = question.strip()
         if not q:
             st.markdown('<div class="alert alert-info"><span class="alert-icon">ℹ️</span><div class="alert-body">Please enter a question above.</div></div>', unsafe_allow_html=True)
-        elif not os.environ.get("GROQ_API_KEY"):
+        elif not get_groq_api_key():
             st.markdown('<div class="alert alert-error"><span class="alert-icon">🔑</span><div class="alert-body">GROQ_API_KEY not found. Add it to the .env file and restart the app.</div></div>', unsafe_allow_html=True)
         else:
             with st.spinner("🤖 StatBot is analysing your data..."):
