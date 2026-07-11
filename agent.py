@@ -57,8 +57,22 @@ RULES — follow every rule exactly:
 12. Use professional colors: ['#2563EB','#0891B2','#059669','#D97706','#DC2626','#7C3AED'] for multi-series.
 13. Do NOT print anything — only set the ANSWER variable and optionally create a plt figure.
 
+Extra chart safety rules:
+- For pie charts, NEVER pass raw date/time values or raw strings to plt.pie().
+- Pie values must be numeric counts or numeric aggregates.
+- For category/date columns, use value_counts(), groupby(...).size(), or groupby(...)[numeric_col].sum().
+- Drop missing values before plotting and limit pie charts to the top 10 slices.
+- Before plotting, verify plotted y-values are numeric with pd.api.types.is_numeric_dtype(...).
+
 Respond with ONLY one ```python ... ``` code block. No explanations outside it.
 """).strip()
+
+REPAIR_PROMPT = SYSTEM_PROMPT + textwrap.dedent("""
+
+The previous generated code failed during execution. Return a corrected SINGLE Python code block.
+Keep the same user question and DataFrame context, but fix the traceback.
+Do not repeat the same plotting or type-conversion mistake.
+""")
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -169,9 +183,26 @@ def run_agent(
     try:
         namespace = safe_exec(code, namespace)
     except RuntimeError as exc:
-        result.success = False
-        result.error = f"Execution error:\n{exc}"
-        return result
+        repair_msg = (
+            f"Question: {question}\n\n"
+            f"DataFrame Info:\n{ctx}\n\n"
+            f"Previous generated code:\n```python\n{code}\n```\n\n"
+            f"Execution traceback:\n{exc}"
+        )
+        try:
+            repaired_reply = api_fn(REPAIR_PROMPT, repair_msg)
+            repaired_code = _extract_code(repaired_reply)
+            if not repaired_code:
+                raise RuntimeError("The model did not return corrected code.")
+            validate_code(repaired_code)
+            close_all_figures()
+            result.code = repaired_code
+            namespace["ANSWER"] = ""
+            namespace = safe_exec(repaired_code, namespace)
+        except Exception as repair_exc:
+            result.success = False
+            result.error = f"Execution error:\n{exc}\n\nRepair attempt failed:\n{repair_exc}"
+            return result
 
     # ── Step 6: Extract results ───────────────────────────────────────────────
     raw_answer = namespace.get("ANSWER", "")
